@@ -1,0 +1,24 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+<h1>Search History</h1>
+{% if history_list %}
+    {% for user in history_list %}
+        <ul class="list-group">
+            <li class="list-group-item">
+                <a href="/user?user_id={{user}}">{{ user }}</a>
+            </li>
+    {% endfor %}
+            <li>
+                <button name="search" onclick="location.href='/'">재검색</button>
+                <button name="init" onclick="location.href='/search_init'">초기화</button>
+            </li>
+        </ul>
+{% else %}
+    <ul class="list-group">
+        <li class="list-group-item">
+            검색 기록이 존재하지 않습니다!
+        </li>
+        <li>
+            <button onclick="location.href='/'">재검색</button>
+        </li>
+    </ul>
+{% endif %} 

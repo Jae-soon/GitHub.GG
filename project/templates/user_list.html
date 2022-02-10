@@ -1,0 +1,61 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+{% if user %}
+    {% for user in user %}
+        <ul class="list-group">
+            <li class="list-group-item active">
+                ID : {{ user['id'] }}
+            </li>
+            <li class="list-group-item">
+                Name : {{ user['name'] }}
+            </li>
+            <li class="list-group-item">
+                Introduce : {{ user['bio'] }}
+            </li>
+                </span>
+            <li class="list-group-item">
+                E-mail : {{ user['email'] }}
+            </li>
+            <li class="list-group-item">
+                Follwer : {{ user['past_fwer'] }} → {{ user['present_fwer'] }}
+                {% if user['fwer_inc'] > 0 %}
+                    &nbsp&nbsp&nbsp{{ user['fwer_inc'] }}↑
+                {% elif user['fwer_inc'] == 0 %}
+                {% else %}
+                    &nbsp&nbsp&nbsp{{ user['fwer_inc'] }}↓
+                {% endif %}
+            </li>
+            <li class="list-group-item">
+                Following : {{ user['past_fwing'] }} → {{ user['present_fwing'] }}
+                {% if user['fwing_inc'] > 0 %}
+                    &nbsp&nbsp&nbsp{{ user['fwing_inc'] }}↑
+                {% elif user['fwing_inc'] == 0 %}
+                {% else %}
+                    &nbsp&nbsp&nbsp{{ user['fwing_inc'] }}↓
+                {% endif %}
+            </li>
+            <li class="list-group-item">
+                Repository : {{ user['past_rep'] }} → {{ user['present_rep'] }}
+                {% if user['rep_inc'] > 0 %}
+                    &nbsp&nbsp&nbsp{{ user['rep_inc'] }}↑
+                {% elif user['rep_inc'] == 0 %}
+                {% else %}
+                    &nbsp&nbsp&nbsp{{ user['rep_inc'] }}↓
+                {% endif %}
+            </li>
+            <li class="list-group-item">
+                Before date : {{ user['past_date'] }}
+            </li>
+            <li class="list-group-item">
+                Access date : {{ user['present_date'] }}
+            </li>
+            <li class="list-group-item">
+                <button name="search" onclick="location.href='/'">검색</button>
+                <button name="searchHistory" onclick="location.href='/search_history'">검색 기록</button>
+            </li>
+    {% endfor %}
+{% else %}
+            <li class="list-group-item">
+                유저가 없습니다.
+            </li>
+{% endif %}
+            </ul>
